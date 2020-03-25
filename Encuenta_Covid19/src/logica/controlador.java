@@ -26,7 +26,7 @@ public class controlador {
     }
         
     public static void Guardar(){
-        String archivo = "Usuarios.txt";
+        String archivo = "registro.txt";
         try{
             ObjectOutputStream ob = new ObjectOutputStream(new FileOutputStream(archivo));
             ob.writeObject(contadores);
@@ -38,7 +38,7 @@ public class controlador {
         }   
     }
     public static void Recuperar(){
-        String archivo = "Usuarios.txt";
+        String archivo = "registro.txt";
         contadores = new ArrayList<String>();
         try{
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(archivo));

@@ -62,6 +62,9 @@ public class GUI_principal extends JFrame{
         panel.setBackground(color_grism);
         lbl_texto.setForeground(Color.white);
         
+        btn_recomendaciones.setEnabled(false);
+        btn_resultados.setEnabled(false);
+        
         panel.add(lbl_texto);
         panel.add(btn_china);
         panel.add(btn_italia);
@@ -82,7 +85,7 @@ public class GUI_principal extends JFrame{
                         ++contagiados;
                     }
                 }
-                JOptionPane.showMessageDialog(null , "La cantidad de posibles contagiados es: "+contagiados , "ESTADISTICAS DEL COVID19" , JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null , "La cantidad de posibles contagiados es: "+contagiados , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
                 dispose();
             }
         };
@@ -96,6 +99,7 @@ public class GUI_principal extends JFrame{
                 btn_francia.setEnabled(false);
                 btn_eeuu.setEnabled(false);
                 btn_otro.setEnabled(false);
+                btn_recomendaciones.setEnabled(true);
             }
         };
             
@@ -108,17 +112,21 @@ public class GUI_principal extends JFrame{
                 btn_francia.setEnabled(false);
                 btn_eeuu.setEnabled(false);
                 btn_otro.setEnabled(false);
+                btn_recomendaciones.setEnabled(true);
             }
         };
         
         ActionListener recomendaciones = new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                if (estado<2){
-                    JOptionPane.showMessageDialog(null , "Buenos dìas. \nLamentamos informale que usted muy posiblemente este contagiado,\nle recomendamos que se remita al centro de salud mas cercano, usando tapaboca, guantes y lavando sus manos regularmente.\nMuchas gracias.","RECOMENDACIONES", JOptionPane.ERROR_MESSAGE);
+                switch (estado){
+                    case 1:
+                        JOptionPane.showMessageDialog(null , "Lamentamos informale que usted muy posiblemente este contagiado de COVID-19\nle recomendamos quedarse en casa y llamar al 123\nPor favor use tapaboca\nMuchas gracias.","RECOMENDACIONES", JOptionPane.ERROR_MESSAGE);
+                    break;    
+                    case 2:
+                        JOptionPane.showMessageDialog(null , "Posiblemente este sano\nPor favor guarde cuarentena en su casa y haga un lavado de manos frecuente\nMuchas gracias.","RECOMENDACIONES",JOptionPane.INFORMATION_MESSAGE);
+                    break;
                 }
-                else{
-                    JOptionPane.showMessageDialog(null , "Posiblemente este sano. Guarde cuarentena por favor ","RECOMENDACIONES",JOptionPane.ERROR_MESSAGE);
-                }
+                btn_resultados.setEnabled(true);
             }
         };
              

@@ -20,8 +20,6 @@ public class controlador {
         do{
             Thread.sleep(100);
         }while(p.estado==0);
-        String nuevo=String.valueOf(p.estado);
-        contadores.add(nuevo);
         Guardar();
     }
         

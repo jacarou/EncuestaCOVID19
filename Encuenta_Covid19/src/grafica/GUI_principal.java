@@ -14,6 +14,13 @@ import javax.swing.JPanel;
 public class GUI_principal extends JFrame{
 
     public int estado=0;
+    public int contagiados=0;
+    public int contagiadosChina =0;
+    public int contagiadosItalia =0;
+    public int contagiadosEspana =0;
+    public int contagiadosFrancia =0;
+    public int contagiadosEEUU =0;
+    public int contagiadosOtros=0;
     
     public GUI_principal(ArrayList<String> e){
     
@@ -79,20 +86,49 @@ public class GUI_principal extends JFrame{
         
         ActionListener resultados = new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                int contagiados =0;
                 for (int f=0;f<e.size();f++){
-                    if(Integer.parseInt(e.get(f))<2){
-                        ++contagiados;
+                    switch (Integer.parseInt(e.get(f))){
+                        case 2:
+                            ++contagiadosChina;
+                            ++contagiados;
+                        break;    
+                        case 3:
+                            ++contagiadosItalia;
+                            ++contagiados;
+                        break;
+                        case 4:
+                            ++contagiadosEspana;
+                            ++contagiados;
+                        break;
+                        case 5:
+                            ++contagiadosFrancia;
+                            ++contagiados;
+                        break;
+                        case 6:
+                            ++contagiadosEEUU;
+                            ++contagiados;
+                        break;
+                        case 7:
+                            ++contagiadosOtros;
+                            ++contagiados;
+                        break;
+                        
                     }
                 }
-                JOptionPane.showMessageDialog(null , "La cantidad de posibles contagiados es: "+contagiados , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null , "La cantidad de contagiados en China es: "+contagiadosChina , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null , "La cantidad de contagiados en España es: "+contagiadosEspana , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null , "La cantidad de contagiados en Italia es: "+contagiadosItalia , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null , "La cantidad de contagiados en Francia es: "+contagiadosFrancia , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null , "La cantidad de contagiados en EEUU es: "+contagiadosEEUU , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null , "La cantidad de contagiados en otros paises es : "+contagiadosOtros , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null , "La cantidad TOTAL de posibles contagiados es: "+contagiados , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
+                
                 dispose();
             }
         };
-       
-        ActionListener contagiado = new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {    
-                estado=1;
+            
+        ActionListener otro = new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
                 btn_china.setEnabled(false);
                 btn_italia.setEnabled(false);
                 btn_espana.setEnabled(false);
@@ -100,11 +136,32 @@ public class GUI_principal extends JFrame{
                 btn_eeuu.setEnabled(false);
                 btn_otro.setEnabled(false);
                 btn_recomendaciones.setEnabled(true);
+                int confirmar = JOptionPane.showConfirmDialog(null,"¿Tiene usted sintomas como tos, fiebre o cansancio físico?","SINTOMATOLOGIA",JOptionPane.YES_NO_OPTION);
+                if(confirmar==0){
+                    estado=7;
+                    e.add("7");
+                }
+                else{
+                    estado=1;
+                    e.add("1");
+                }
             }
         };
-            
-        ActionListener no_contagiado = new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {    
+        
+        ActionListener recomendaciones = new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                if (estado>1){
+                    JOptionPane.showMessageDialog(null , "Lamentamos informale que usted muy posiblemente este contagiado de COVID-19\nle recomendamos quedarse en casa y llamar al 123\nPor favor use tapaboca\nMuchas gracias.","RECOMENDACIONES", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null , "Posiblemente este sano\nPor favor guarde cuarentena en su casa y haga un lavado de manos frecuente\nMuchas gracias.","RECOMENDACIONES",JOptionPane.INFORMATION_MESSAGE);
+                }
+                btn_resultados.setEnabled(true);
+            }
+        };
+        
+        ActionListener contadorChina = new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
                 estado=2;
                 btn_china.setEnabled(false);
                 btn_italia.setEnabled(false);
@@ -113,31 +170,73 @@ public class GUI_principal extends JFrame{
                 btn_eeuu.setEnabled(false);
                 btn_otro.setEnabled(false);
                 btn_recomendaciones.setEnabled(true);
+                e.add("2");
             }
         };
         
-        ActionListener recomendaciones = new ActionListener() {
+        ActionListener contadorItalia = new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                switch (estado){
-                    case 1:
-                        JOptionPane.showMessageDialog(null , "Lamentamos informale que usted muy posiblemente este contagiado de COVID-19\nle recomendamos quedarse en casa y llamar al 123\nPor favor use tapaboca\nMuchas gracias.","RECOMENDACIONES", JOptionPane.ERROR_MESSAGE);
-                    break;    
-                    case 2:
-                        JOptionPane.showMessageDialog(null , "Posiblemente este sano\nPor favor guarde cuarentena en su casa y haga un lavado de manos frecuente\nMuchas gracias.","RECOMENDACIONES",JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                }
-                btn_resultados.setEnabled(true);
+                estado=3;
+                btn_china.setEnabled(false);
+                btn_italia.setEnabled(false);
+                btn_espana.setEnabled(false);
+                btn_francia.setEnabled(false);
+                btn_eeuu.setEnabled(false);
+                btn_otro.setEnabled(false);
+                btn_recomendaciones.setEnabled(true);
+                e.add("3");
             }
         };
-             
+        
+        ActionListener contadorEspana = new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                estado=4;
+                btn_china.setEnabled(false);
+                btn_italia.setEnabled(false);
+                btn_espana.setEnabled(false);
+                btn_francia.setEnabled(false);
+                btn_eeuu.setEnabled(false);
+                btn_otro.setEnabled(false);
+                btn_recomendaciones.setEnabled(true);
+                e.add("4");
+            }
+        };
+        
+        ActionListener contadorFrancia = new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                estado=5;
+                btn_china.setEnabled(false);
+                btn_italia.setEnabled(false);
+                btn_espana.setEnabled(false);
+                btn_francia.setEnabled(false);
+                btn_eeuu.setEnabled(false);
+                btn_otro.setEnabled(false);
+                btn_recomendaciones.setEnabled(true);
+                e.add("5");
+            }
+        };
+        
+        ActionListener contadorEEUU = new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                estado=6;
+                btn_china.setEnabled(false);
+                btn_italia.setEnabled(false);
+                btn_espana.setEnabled(false);
+                btn_francia.setEnabled(false);
+                btn_eeuu.setEnabled(false);
+                btn_otro.setEnabled(false);
+                btn_recomendaciones.setEnabled(true);
+                e.add("6");
+            }
+        };
         btn_recomendaciones.addActionListener(recomendaciones);
         btn_resultados.addActionListener(resultados);
-         btn_china.addActionListener(contagiado);
-         btn_italia.addActionListener(contagiado);
-         btn_espana.addActionListener(contagiado);
-         btn_francia.addActionListener(contagiado);
-         btn_eeuu.addActionListener(contagiado);
-         btn_otro.addActionListener(no_contagiado);
+        btn_china.addActionListener(contadorChina);
+        btn_italia.addActionListener(contadorItalia);
+        btn_espana.addActionListener(contadorEspana);
+        btn_francia.addActionListener(contadorFrancia);
+        btn_eeuu.addActionListener(contadorEEUU);
+        btn_otro.addActionListener(otro);
         
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

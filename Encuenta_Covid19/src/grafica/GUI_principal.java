@@ -115,13 +115,7 @@ public class GUI_principal extends JFrame{
                         
                     }
                 }
-                JOptionPane.showMessageDialog(null , "La cantidad de contagiados en China es: "+contagiadosChina , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
-                JOptionPane.showMessageDialog(null , "La cantidad de contagiados en España es: "+contagiadosEspana , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
-                JOptionPane.showMessageDialog(null , "La cantidad de contagiados en Italia es: "+contagiadosItalia , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
-                JOptionPane.showMessageDialog(null , "La cantidad de contagiados en Francia es: "+contagiadosFrancia , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
-                JOptionPane.showMessageDialog(null , "La cantidad de contagiados en EEUU es: "+contagiadosEEUU , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
-                JOptionPane.showMessageDialog(null , "La cantidad de contagiados en otros paises es : "+contagiadosOtros , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
-                JOptionPane.showMessageDialog(null , "La cantidad TOTAL de posibles contagiados es: "+contagiados , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null , "La cantidad de contagiados en China es: "+contagiadosChina+"\nLa cantidad de contagiados en España es: "+contagiadosEspana+"\n La cantidad de contagiados en Italia es: "+contagiadosItalia+"\nLa cantidad de contagiados en Francia es: "+contagiadosFrancia+"\n La cantidad de contagiados en EEUU es: "+contagiadosEEUU+"\n La cantidad de contagiados en otros paises es : "+contagiadosOtros+"\n La cantidad TOTAL de posibles contagiados es: "+contagiados , "ESTADISTICAS DEL COVID19" , JOptionPane.WARNING_MESSAGE);
                 
                 dispose();
             }

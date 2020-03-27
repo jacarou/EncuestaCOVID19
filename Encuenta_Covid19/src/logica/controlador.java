@@ -35,6 +35,7 @@ public class controlador {
             e.printStackTrace();
         }   
     }
+    
     public static void Recuperar(){
         String archivo = "registro.txt";
         contadores = new ArrayList<String>();
